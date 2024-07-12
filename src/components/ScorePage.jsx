@@ -1,18 +1,4 @@
-type ScorePageProps = {
-  score: number;
-  title: string;
-  icon: string;
-  iconbg: string;
-  numberOfQuestions: number;
-};
-
-const ScorePage = ({
-  title,
-  icon,
-  iconbg,
-  score,
-  numberOfQuestions,
-}: ScorePageProps) => {
+const ScorePage = ({ title, icon, iconbg, score, numberOfQuestions }) => {
   return (
     <section className="mt-8 px-6 sm:px-16 xl:mt-0 xl:flex xl:px-0">
       <div className="xl:w-1/2">

@@ -1,15 +1,4 @@
-// import { Quiz } from "../../types";
-
-import { useEffect } from "react";
-
-type NavbarProps = {
-  themeMode: "light" | "dark";
-  setThemeMode: (themeMode: "light" | "dark") => void;
-  handleThemeMode: () => void;
-  title: string;
-  icon: string;
-  iconbg: string;
-};
+import React, { useEffect } from 'react';
 
 const Navbar = ({
   themeMode,
@@ -18,18 +7,18 @@ const Navbar = ({
   title,
   icon,
   iconbg,
-}: NavbarProps) => {
+}) => {
   console.log(themeMode);
 
   useEffect(() => {
-    const savedThemeMode = localStorage.getItem("themeMode");
+    const savedThemeMode = localStorage.getItem('themeMode');
     if (savedThemeMode) {
-      setThemeMode(savedThemeMode as "light" | "dark");
+      setThemeMode(savedThemeMode);
     }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("themeMode", themeMode);
+    localStorage.setItem('themeMode', themeMode);
   }, [themeMode]);
 
   return (
@@ -48,7 +37,7 @@ const Navbar = ({
         <section className=""></section>
       )}
       <section className="flex items-center gap-2 sm:gap-3">
-        {themeMode === "dark" ? (
+        {themeMode === 'dark' ? (
           <img
             src="/icon-sun-light.svg"
             alt="Light Mode"
@@ -68,13 +57,13 @@ const Navbar = ({
         >
           <div
             className={
-              themeMode === "dark"
-                ? "ml-auto h-3 w-3 rounded-full bg-white transition-all duration-300 ease-in-out sm:h-5 sm:w-5"
-                : "mr-auto h-3 w-3 rounded-full bg-white transition-all duration-300 ease-in-out sm:h-5 sm:w-5"
+              themeMode === 'dark'
+                ? 'ml-auto h-3 w-3 rounded-full bg-white transition-all duration-300 ease-in-out sm:h-5 sm:w-5'
+                : 'mr-auto h-3 w-3 rounded-full bg-white transition-all duration-300 ease-in-out sm:h-5 sm:w-5'
             }
           ></div>
         </div>
-        {themeMode === "dark" ? (
+        {themeMode === 'dark' ? (
           <img
             src="/icon-moon-light.svg"
             alt="Dark Mode"

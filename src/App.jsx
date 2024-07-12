@@ -3,19 +3,18 @@ import Home from "./components/Home";
 import Navbar from "./components/Navbar";
 import { useState, useEffect } from "react";
 import data from "../data.json";
-import { Quizzes, Quiz } from "../types";
 import QuizPage from "./components/QuizPage";
 
 function App() {
-  const quizzes: Quizzes = data.quizzes;
-  const [quizData, setQuizData] = useState<Quiz>({
+  const quizzes = data.quizzes;
+  const [quizData, setQuizData] = useState({
     title: "",
     icon: "",
     iconbg: "",
     questions: [],
   });
-  const [themeMode, setThemeMode] = useState<"light" | "dark">(
-    () => (localStorage.getItem("themeMode") as "light" | "dark") || "light",
+  const [themeMode, setThemeMode] = useState(
+    localStorage.getItem("themeMode") ? localStorage.getItem("themeMode") : "light",
   );
 
   useEffect(() => {
@@ -27,9 +26,7 @@ function App() {
   }, [themeMode]);
 
   const handleThemeMode = () => {
-    setThemeMode((prevThemeMode) =>
-      prevThemeMode === "light" ? "dark" : "light",
-    );
+    setThemeMode(themeMode === "light" ? "dark" : "light");
   };
 
   return (
