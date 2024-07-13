@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import { useState, useEffect } from "react";
 import data from "../data.json";
 import QuizPage from "./components/QuizPage";
+import CreateQuiz from "./components/CreateQuiz";
 
 function App() {
   const quizzes = data.quizzes;
@@ -45,6 +46,8 @@ function App() {
           element={<Home quizzes={quizzes} setQuizData={setQuizData} />}
         />
         <Route path="/quiz" element={<QuizPage quizData={quizData} />} />
+        <Route path="/dashboard" element={< CreateQuiz/>} />
+
       </Routes>
     </>
   );

@@ -1,14 +1,17 @@
 import React from 'react';
 import SignUp from "./SignUp";
+
 import { useState } from 'react';
 
 const SignIn = () => {
   const [showSignUp, setShowSignUp] = useState(false);
+  
 
   const handleSignUpClick = () => {
     setShowSignUp(true);
   };
 
+ 
   return (
     <div className="mx-auto max-w-screen-2xl px-8  sm:px-12 lg:px-16">
       <div className="mx-auto max-w-2xl">
@@ -17,7 +20,7 @@ const SignIn = () => {
           <SignUp />
         ) : (
           <form action="#" className="mb-0 mt-12 space-y-6 rounded-lg p-8 shadow-lg sm:p-12 lg:p-16">
-            <p className="text-center text-lg font-medium">Sign in to your account</p>
+            <p className="text-center text-3xl font-medium">Sign In</p>
 
             <div>
               <label htmlFor="email" className="sr-only">Email</label>
@@ -86,13 +89,14 @@ const SignIn = () => {
             <button
               type="submit"
               className="block w-full rounded-lg bg-indigo-600 px-8 py-4 text-lg font-medium text-white"
+         
             >
               Sign in
             </button>
 
             <p className="text-center text-lg text-gray-500">
               No account?
-              <p className="underline" onClick={handleSignUpClick}>Sign up</p>
+              <p className="underline text-blue-600" onClick={handleSignUpClick}>Sign up</p>
             </p>
           </form>
         )}

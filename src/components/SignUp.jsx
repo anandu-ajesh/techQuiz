@@ -6,7 +6,7 @@ const SignUp = () => {
       <div className="mx-auto max-w-2xl">
        
         <form action="#" className="mb-0 mt-12 space-y-6 rounded-lg p-8 shadow-lg sm:p-12 lg:p-16">
-          <p className="text-center text-lg font-medium">Sign up to your account</p>
+          <p className="text-center text-3xl font-medium">Sign up </p>
 
           <div>
             <label htmlFor="email" className="sr-only">Email</label>
@@ -76,12 +76,12 @@ const SignUp = () => {
             type="submit"
             className="block w-full rounded-lg bg-indigo-600 px-8 py-4 text-lg font-medium text-white"
           >
-            Sign in
+            Sign Up
           </button>
 
           <p className="text-center text-lg text-gray-500">
-            No account?
-            <a className="underline" href="#">Sign up</a>
+            Already have an account?
+            <a className="underline text-blue-600" href="#">Sign In</a>
           </p>
         </form>
       </div>
