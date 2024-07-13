@@ -5,6 +5,8 @@ import { useState, useEffect } from "react";
 import data from "../data.json";
 import QuizPage from "./components/QuizPage";
 import CreateQuiz from "./components/CreateQuiz";
+import Scoreboard from "./components/ScoreBoard";
+
 
 function App() {
   const quizzes = data.quizzes;
@@ -47,6 +49,8 @@ function App() {
         />
         <Route path="/quiz" element={<QuizPage quizData={quizData} />} />
         <Route path="/dashboard" element={< CreateQuiz/>} />
+        <Route path="/scoreboard" element={<Scoreboard/>} />
+
 
       </Routes>
     </>

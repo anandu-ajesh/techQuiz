@@ -1,20 +1,21 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const TeamForm = ({ teams, setTeams }) => {
-  const [newTeamName, setNewTeamName] = useState("");
-  const [newTeamMembers, setNewTeamMembers] = useState("");
-  const [showTeamList, setShowTeamList] = useState(false); // new state to track whether to show the team list
+  const [newTeamName, setNewTeamName] = useState('');
+  const [newTeamMembers, setNewTeamMembers] = useState('');
+  const navigate = useNavigate();
 
   const handleAddTeam = () => {
     if (teams.length < 10) {
       const newTeam = {
         name: newTeamName,
-        members: newTeamMembers.split(","),
-        score: 0, // initialize score to 0
+        members: newTeamMembers.split(','),
+        score: 0, // add a score property to each team
       };
       setTeams([...teams, newTeam]);
-      setNewTeamName("");
-      setNewTeamMembers("");
+      setNewTeamName('');
+      setNewTeamMembers('');
     } else {
       alert("Maximum 10 teams can be added");
     }
@@ -22,76 +23,28 @@ const TeamForm = ({ teams, setTeams }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setShowTeamList(true); // show the team list when the "Start Quiz" button is clicked
+    console.log('Team form submitted:', teams);
+    navigate("/scoreboard", { state: { teams } }); // pass teams data to scoreboard route
   };
 
   return (
-    <div className="mx-auto max-w-md rounded bg-white p-4 shadow-md">
-      {showTeamList ? (
-        <TeamList teams={teams} /> // render the TeamList component if showTeamList is true
-      ) : (
-        <form onSubmit={handleSubmit}>
-          <h2 className="mb-4 flex items-center justify-center text-3xl font-bold text-emerald-600">
-            Add Teams
-          </h2>
-          <label className="mb-4 block">
-            <span className="text-gray-700">Team Name</span>
-            <input
-              type="text"
-              className="block w-full border border-gray-300 p-2 pl-10 text-sm text-gray-700"
-              value={newTeamName}
-              onChange={(e) => setNewTeamName(e.target.value)}
-              placeholder="Enter team name"
-            />
-          </label>
-          <label className="mb-4 block">
-            <span className="text-gray-700">
-              Team Members (comma separated)
-            </span>
-            <input
-              type="text"
-              className="block w-full border border-gray-300 p-2 pl-10 text-sm text-gray-700"
-              value={newTeamMembers}
-              onChange={(e) => setNewTeamMembers(e.target.value)}
-              placeholder="Enter team members"
-            />
-          </label>
-          <button
-            type="button"
-            className="mb-4 w-full rounded bg-orange-500 px-4 py-2 font-bold text-white hover:bg-orange-700"
-            onClick={handleAddTeam}
-          >
-            Add Team
-          </button>
-          <button
-            type="submit"
-            className="mb-4 w-full rounded bg-orange-500 px-4 py-2 font-bold text-white hover:bg-orange-700"
-          >
-            Start Quiz
-          </button>
-        </form>
-      )}
-    </div>
-  );
-};
-
-const TeamList = ({ teams }) => {
-  return (
-    <div>
-      <h2 className="text-black items-center justify-center flex font-bold text-2xl">Score Board</h2>
-      <div className="grid grid-cols-2 gap-4">
-        {teams.map((team, index) => (
-          <div
-            key={index}
-            className="rounded bg-white p-4 text-black shadow-md"
-          >
-            <h3>{team.name}</h3>
-            <p>Members: {team.members.join(", ")}</p>
-            <p>Score: {team.score}</p>
-          </div>
-        ))}
-      </div>
-    </div>
+    <form className="max-w-md mx-auto p-4 bg-white shadow-md rounded" onSubmit={handleSubmit}>
+      <h2 className="text-3xl font-bold mb-4 text-emerald-500 justify-center items-center flex">Add Teams</h2>
+      <label className="block mb-4">
+        <span className="text-gray-700">Team Name</span>
+        <input type="text" className="block w-full border border-gray-300 p-2 pl-10 text-sm text-gray-700" value={newTeamName} onChange={(e) => setNewTeamName(e.target.value)} placeholder="Enter team name" />
+      </label>
+      <label className="block mb-4">
+        <span className="text-gray-700">Team Members (comma separated)</span>
+        <input type="text" className="block w-full border border-gray-300 p-2 pl-10 text-sm text-gray-700" value={newTeamMembers} onChange={(e) => setNewTeamMembers(e.target.value)} placeholder="Enter team members" />
+      </label>
+      <button type="button" className="bg-orange-500 hover:bg-orange-700 text-white w-full font-bold mb-4 py-2 px-4 rounded" onClick={handleAddTeam}>
+        Add Team
+      </button>
+      <button type="submit" className="bg-orange-500 hover:bg-orange-700 text-white w-full font-bold mb-4 py-2 px-4 rounded">
+        Start Quiz
+      </button>
+    </form>
   );
 };
 
