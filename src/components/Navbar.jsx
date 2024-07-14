@@ -32,10 +32,8 @@ const Navbar = ({
           </div>
           <h1 className="text-[18px] font-medium sm:text-[28px]">Techosa</h1>
         </section>
-      
         
-     
-      <section className="flex items-center gap-2 sm:gap-3">
+        <section className="flex items-center gap-2 sm:gap-3">
         {themeMode === 'dark' ? (
           <img
             src="/icon-sun-light.svg"
